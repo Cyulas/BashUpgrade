@@ -19,17 +19,17 @@ sys_upgrade(){
     echo -e "${GREEN}Upgrades Complete${ENDCOLOR}"
 }
 
-#AUTOREMOVE FUNCTION
-sys_autoremove(){
-    echo -e "${GREEN}Starting Clean Up${ENDCOLOR}"
-    sudo apt autoremove -y
-    echo -e "${GREEN}Clean Up Complete${ENDCOLOR}"
-}
-
 #UPGRADE DISTRIBUTION
 sys_distribution(){
     echo -e "${GREEN}Starting Clean Up${ENDCOLOR}"
     sudo apt dist-upgrade
+    echo -e "${GREEN}Clean Up Complete${ENDCOLOR}"
+}
+
+#AUTOREMOVE FUNCTION
+sys_autoremove(){
+    echo -e "${GREEN}Starting Clean Up${ENDCOLOR}"
+    sudo apt autoremove -y
     echo -e "${GREEN}Clean Up Complete${ENDCOLOR}"
 }
 
@@ -41,8 +41,8 @@ sys_full_update_and_upgrade(){
 }
 
 #EXIT FUNCTION
-menu_exit(){
-    exit()
+end_program(){
+    exit
 }
 
 #OUTPUT WELCOME AND SELECTION SCREEN AND PROMPT USER TO SELECT OPTION
@@ -58,31 +58,31 @@ menu(){
     echo "5. Exit.${ENDCOLOR}\n"
 }
 
-while menu != '5':
-    menu
-
+while menu != 5
+do
     read -p "Enter the number for the command you wish to run: " choice
 
-case $choice in
-    1) 
-        sys_update
-        ;;
-    2)
-        sys_upgrade
-        ;;
-    3)
-        sys_distribution
-        ;;
-    4)
-        sys_full_update_and_upgrade
-        ;;
-    5)
-        menu_exit
-        ;;
-    *)
-        echo "Invalid Choice"
-        ;;
-esac
+    case $choice in
+        1) 
+            sys_update
+            ;;
+        2)
+            sys_upgrade
+            ;;
+        3)
+            sys_distribution
+            ;;
+        4)
+            sys_full_update_and_upgrade
+            ;;
+        5)
+            end_program
+            ;;
+        *)
+            echo "Invalid Choice"
+            ;;
+    esac
+done
 
 
 
