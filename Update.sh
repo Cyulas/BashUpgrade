@@ -41,7 +41,7 @@ sys_full_update_and_upgrade(){
 }
 
 #EXIT FUNCTION
-utility_exit(){
+menu_exit(){
     exit()
 }
 
@@ -58,9 +58,10 @@ menu(){
     echo "5. Exit.${ENDCOLOR}\n"
 }
 
-menu
+while menu != '5':
+    menu
 
-read -p "Enter the number for the command you wish to run: " choice
+    read -p "Enter the number for the command you wish to run: " choice
 
 case $choice in
     1) 
@@ -76,7 +77,7 @@ case $choice in
         sys_full_update_and_upgrade
         ;;
     5)
-        utility_exit
+        menu_exit
         ;;
     *)
         echo "Invalid Choice"
